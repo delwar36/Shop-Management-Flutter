@@ -16,11 +16,11 @@ class ProductItem extends StatelessWidget {
         Provider.of<ProductsProvider>(context, listen: false).getById(id);
     final cart = Provider.of<CartProvider>(context, listen: true);
 
-    return InkWell(
+    return InkWell(      
       onTap: () {
         if (product.amount > cart.getQuantity(product.id)) {
-          cart.addItem(
-              product.id, product.sPrice, product.title, product.imageUrl, product.unit);
+          cart.addItem(product.id, product.sPrice, product.title,
+              product.imageUrl, product.unit);
         } else {
           Scaffold.of(context).showSnackBar(
             SnackBar(

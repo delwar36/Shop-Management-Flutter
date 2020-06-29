@@ -13,7 +13,10 @@ class StockItem extends StatelessWidget {
     final product =
         Provider.of<ProductsProvider>(context, listen: false).getById(id);
 
-    return InkWell(onTap: () {}, child: ProductCard(product: product));
+    return InkWell(      
+      onTap: () {},
+      child: ProductCard(product: product),
+    );
   }
 }
 
@@ -58,7 +61,7 @@ class ProductCard extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
                 color: Colors.black54,
                 child: Consumer<ProductsProvider>(
-                  builder: (ctx, product, ch){
+                  builder: (ctx, product, ch) {
                     return ch;
                   },
                   child: Text(

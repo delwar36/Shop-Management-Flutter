@@ -45,7 +45,7 @@ class ProductsProvider with ChangeNotifier {
       final response = await http.get(url);
       // print(response.body);
       final extractData = json.decode(response.body) as Map<String, dynamic>;
-      final List<Product> loadedProduct = []; 
+      final List<Product> loadedProduct = [];
       // final extractData = await DBHelper.getData(tableName, dbName, creatTable);
       if (extractData == null) {
         return;
@@ -53,17 +53,17 @@ class ProductsProvider with ChangeNotifier {
 
       extractData.forEach((prodId, prodData) {
         loadedProduct.add(
-      Product(
-        id: prodId,
-        title: prodData['title'],
-        amount: prodData['amount'],
-        categories: prodData['categories'],
-        pPrice: prodData['pPrice'],
-        sPrice: prodData['sPrice'],
-        unit: prodData['unit'],
-        imageUrl: prodData['imageUrl'],
-        dateTime: DateTime.parse(prodData['dateTime']),
-      ),
+          Product(
+            id: prodId,
+            title: prodData['title'],
+            amount: prodData['amount'],
+            categories: prodData['categories'],
+            pPrice: prodData['pPrice'],
+            sPrice: prodData['sPrice'],
+            unit: prodData['unit'],
+            imageUrl: prodData['imageUrl'],
+            dateTime: DateTime.parse(prodData['dateTime']),
+          ),
         );
       });
       _items = loadedProduct;
@@ -77,7 +77,7 @@ class ProductsProvider with ChangeNotifier {
       //           sPrice: item['sPrice'],
       //           unit: item['unit'],
       //           imageUrl: item['imageUrl'],
-      //           dateTime: DateTime.parse(item['dateTime']), 
+      //           dateTime: DateTime.parse(item['dateTime']),
       //           categories: <String>[],
       //         ))
       //     .toList();
@@ -91,14 +91,14 @@ class ProductsProvider with ChangeNotifier {
 
   Future<void> addProduct(Product product) async {
     Map<String, dynamic> remmoteProduct = {
-    'title': product.title,
-    'categories': product.categories,
-    'pPrice': product.pPrice,
-    'sPrice': product.sPrice,
-    'unit': product.unit,
-    'amount': product.amount,
-    'imageUrl': product.imageUrl,
-    'dateTime': product.dateTime.toIso8601String(),
+      'title': product.title,
+      'categories': product.categories,
+      'pPrice': product.pPrice,
+      'sPrice': product.sPrice,
+      'unit': product.unit,
+      'amount': product.amount,
+      'imageUrl': product.imageUrl,
+      'dateTime': product.dateTime.toIso8601String(),
     };
 
     const url = 'https://shop-management-721b3.firebaseio.com/products.json';
@@ -133,6 +133,19 @@ class ProductsProvider with ChangeNotifier {
       //   'dateTime': newProduct.dateTime.toIso8601String(),
       // });
 
+      notifyListeners();
+    } catch (error) {
+      print(error.toString());
+      throw error;
+    }
+  }
+
+  Future<void> deleteProduct(String productId) async {
+    final url =
+        'https://shop-management-721b3.firebaseio.com/products/$productId.json';
+    try {
+      await http.delete(url);
+      _items.remove(_items.firstWhere((prod) => prod.id == productId));
       notifyListeners();
     } catch (error) {
       print(error.toString());

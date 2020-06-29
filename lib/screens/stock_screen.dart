@@ -63,8 +63,23 @@ class AllProductList extends StatelessWidget {
         return GridView.builder(
           padding: EdgeInsets.all(5),
           itemBuilder: (ctx, index) {
-            return StockItem(
-              categoryProduct[index].id,
+            return GestureDetector(
+              onLongPress: () {
+                Scaffold.of(context).showSnackBar(SnackBar(
+                  content: Text('Delete the product?'),
+                  duration: Duration(seconds: 2),
+                  action: SnackBarAction(
+                    textColor: Colors.red,
+                    label: 'Delete',
+                    onPressed: () {
+                      product.deleteProduct(categoryProduct[index].id);
+                    },
+                  ),
+                ));
+              },
+              child: StockItem(
+                categoryProduct[index].id,
+              ),
             );
           },
           itemCount: categoryProduct.length,
