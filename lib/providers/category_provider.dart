@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_mangement/helpers/db_helper.dart';
 import '../models/category.dart';
@@ -94,28 +91,5 @@ class CategoryProvider with ChangeNotifier {
       print(error.toString());
       throw error;
     }
-  }
-
-  Future<String> uploadImage({
-    @required File imageToUpload,
-    @required String imageCategory,
-  }) async {
-    var imageFileName = DateTime.now().millisecondsSinceEpoch.toString();
-
-    final StorageReference firebaseStorageRef =
-        FirebaseStorage.instance.ref().child(imageCategory).child(imageFileName);
-
-    StorageUploadTask uploadTask = firebaseStorageRef.putFile(imageToUpload);
-
-    StorageTaskSnapshot storageSnapshot = await uploadTask.onComplete;
-
-    var downloadUrl = await storageSnapshot.ref.getDownloadURL();
-
-    if (uploadTask.isComplete) {
-      var url = downloadUrl.toString();
-      return url;
-    }
-
-    return null;
   }
 }

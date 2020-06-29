@@ -1,8 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import '../providers/category_provider.dart' as CP;
-import 'package:provider/provider.dart';
+import 'package:shop_mangement/helpers/upload_image.dart';
 import 'package:shop_mangement/widgets/image_input.dart';
 // import 'package:intl/intl.dart';
 
@@ -43,9 +42,7 @@ class _NewtransactionState extends State<Newtransaction> {
 
     if (_formKey.currentState.validate()) {
       try {
-        storageResult = await Provider.of<CP.CategoryProvider>(context,
-                listen: false)
-            .uploadImage(imageToUpload: _pickedImage, imageCategory: 'product');
+        storageResult = await UploadImage.upload(imageToUpload: _pickedImage, imageCategory: 'product');
       } catch (error) {
         print(error.toString());
         throw error;

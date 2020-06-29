@@ -1,7 +1,6 @@
 import 'dart:io';
-import 'package:provider/provider.dart';
+import 'package:shop_mangement/helpers/upload_image.dart';
 
-import '../providers/category_provider.dart' as CP;
 
 import 'package:flutter/material.dart';
 import 'package:shop_mangement/widgets/image_input.dart';
@@ -31,9 +30,7 @@ class _NewCategoryState extends State<NewCategory> {
     String storageResult;
 
     try {
-      storageResult = await Provider.of<CP.CategoryProvider>(context,
-              listen: false)
-          .uploadImage(imageToUpload: _pickedImage, imageCategory: 'category');
+      storageResult = await UploadImage.upload(imageToUpload: _pickedImage, imageCategory: 'category');
     } catch (error) {
       print(error.toString());
       throw error;
