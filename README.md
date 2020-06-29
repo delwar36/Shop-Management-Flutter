@@ -1,8 +1,6 @@
 # shop_mangement
 
-A new Flutter project.
-
-Just Simple Change
+A new Flutter project
 
 ## Getting Started
 
