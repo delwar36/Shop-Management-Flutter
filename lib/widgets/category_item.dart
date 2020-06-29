@@ -1,8 +1,6 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import '../screens/category_details_screen.dart';
-import 'dart:io' as Io;
 
 class CategoryItem extends StatelessWidget {
   final String id;
