@@ -1,27 +1,11 @@
 import 'package:flutter/foundation.dart';
+import '../models/cart.dart';
 
-class CartItem {
-  final String id;
-  final String title;
-  final double quantiy;
-  final String productImage;
-  final double price;
-  final String unit;
-
-  CartItem({
-    @required this.id,
-    @required this.title,
-    @required this.quantiy,
-    @required this.productImage,
-    @required this.price,
-    @required this.unit,
-  });
-}
 
 class CartProvider with ChangeNotifier {
-  Map<String, CartItem> _items = {};
+  Map<String, Cart> _items = {};
 
-  Map<String, CartItem> get items {
+  Map<String, Cart> get items {
     return {..._items};
   }
 
@@ -51,7 +35,7 @@ class CartProvider with ChangeNotifier {
       //
       _items.update(
         productId,
-        (existingCartItem) => CartItem(
+        (existingCartItem) => Cart(
           id: existingCartItem.id,
           title: existingCartItem.title,
           price: existingCartItem.price,
@@ -63,7 +47,7 @@ class CartProvider with ChangeNotifier {
     } else {
       _items.putIfAbsent(
         productId,
-        () => CartItem(
+        () => Cart(
             id: DateTime.now().toIso8601String(),
             title: title,
             price: price,
@@ -83,7 +67,7 @@ class CartProvider with ChangeNotifier {
   void increaseProduct(String productId) {
     _items.update(
       productId,
-      (existingCartItem) => CartItem(
+      (existingCartItem) => Cart(
         id: existingCartItem.id,
         title: existingCartItem.title,
         price: existingCartItem.price,
@@ -101,7 +85,7 @@ class CartProvider with ChangeNotifier {
     }
     _items.update(
       productId,
-      (existingCartItem) => CartItem(
+      (existingCartItem) => Cart(
         id: existingCartItem.id,
         title: existingCartItem.title,
         price: existingCartItem.price,
@@ -117,7 +101,7 @@ class CartProvider with ChangeNotifier {
      if(getQuantity(id) <= 1){
       removeItem(id);
     }
-    _items.update(id, (existingCartItem) => CartItem(
+    _items.update(id, (existingCartItem) => Cart(
         id: existingCartItem.id,
         title: existingCartItem.title,
         price: existingCartItem.price,

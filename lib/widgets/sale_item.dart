@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:math';
+import '../models/sale.dart';
 
-import '../providers/sales_provider.dart' as sp;
 
 class SaleItem extends StatefulWidget {
-  final sp.SaleItem sale;
+  final Sale sale;
 
   SaleItem(this.sale);
 

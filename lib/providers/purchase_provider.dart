@@ -4,7 +4,7 @@ import '../models/product.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class ProductsProvider with ChangeNotifier {
+class PurchaseProvider with ChangeNotifier {
   // String tableName = 'products';
   // String dbName = 'product';
   // String creatTable =

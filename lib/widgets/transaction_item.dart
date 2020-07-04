@@ -2,10 +2,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
-import '../providers/sales_provider.dart';
+import '../models/sale.dart';
 
 class TransactionItem extends StatefulWidget {
-  final SaleItem saleItem;
+  final Sale saleItem;
   const TransactionItem({
     @required this.saleItem,
   });

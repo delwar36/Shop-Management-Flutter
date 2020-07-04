@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_mangement/models/sale.dart';
 import '../providers/sales_provider.dart';
 import '../widgets/chart_bar.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +8,7 @@ import 'package:intl/intl.dart';
 class Chart extends StatelessWidget {
 
 
-  List<Map<String, Object>> groupedTransactionValues(List<SaleItem> sales) {
+  List<Map<String, Object>> groupedTransactionValues(List<Sale> sales) {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(
         Duration(days: index),
@@ -30,7 +31,7 @@ class Chart extends StatelessWidget {
     }).reversed.toList();
   }
 
-  double totalSpending(List<SaleItem> product) {
+  double totalSpending(List<Sale> product) {
     return groupedTransactionValues(product).fold(0.0, (sum, item) {
       return sum += item['amount'];
     });

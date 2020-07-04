@@ -1,30 +1,13 @@
 import 'package:flutter/material.dart';
-import '../providers/cart_provider.dart';
+import '../models/cart.dart';
+import '../models/sale.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class SaleItem {
-  final String id;
-  final double amount;
-  final List<CartItem> products;
-  final String cusImageUrl;
-  final String cusName;
-  final DateTime dateTime;
-
-  SaleItem({
-    @required this.cusImageUrl,
-    @required this.amount,
-    @required this.cusName,
-    @required this.dateTime,
-    @required this.id,
-    @required this.products,
-  });
-}
-
 class SalesProvider with ChangeNotifier {
-  List<SaleItem> _sales = [];
+  List<Sale> _sales = [];
 
-  List<SaleItem> get sales {
+  List<Sale> get sales {
     return [..._sales];
   }
 
@@ -34,20 +17,20 @@ class SalesProvider with ChangeNotifier {
       final response = await http.get(url);
       print(response.body);
       final extractData = json.decode(response.body) as Map<String, dynamic>;
-      final List<SaleItem> loadedSale = [];
+      final List<Sale> loadedSale = [];
       if(extractData == null){
         return;
       }
       extractData.forEach((prodId, prodData) {
         loadedSale.add(
-          SaleItem(
+          Sale(
             id: prodId,
             amount: prodData['amount'],
             dateTime: DateTime.parse(prodData['dateTime']),
             cusImageUrl: prodData['cusImageUrl'],
             cusName: prodData['cusName'],
             products: (prodData['products'] as List<dynamic>).map(
-              (item) => CartItem(
+              (item) => Cart(
                   id: item['id'],
                   price: item['price'],
                   productImage: item['productImage'],
@@ -66,7 +49,7 @@ class SalesProvider with ChangeNotifier {
     }
   }
 
-  Future<void> addSale(List<CartItem> cartProducts, double total,
+  Future<void> addSale(List<Cart> cartProducts, double total,
       String cusImageUrl, String cusName, DateTime dateTime) async {
     const url = 'https://shop-management-721b3.firebaseio.com/sales.json';
 
@@ -93,7 +76,7 @@ class SalesProvider with ChangeNotifier {
         body: json.encode(remoteSale),
       );
       _sales.add(
-        SaleItem(
+        Sale(
           amount: total,
           dateTime: dateTime,
           id: json.decode(response.body)['name'],

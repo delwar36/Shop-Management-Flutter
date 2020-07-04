@@ -3,8 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class UploadImage {
-  
-  static Future<String> upload({
+    static Future<String> upload({
     @required File imageToUpload,
     @required String imageCategory,
   }) async {
