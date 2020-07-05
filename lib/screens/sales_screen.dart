@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../screens/all_product_screen.dart';
 import '../providers/sales_provider.dart';
-import '../widgets/app_drawer.dart';
+// import '../widgets/app_drawer.dart';
 import '../widgets/sale_item.dart' as si;
 
 class SalesScreen extends StatelessWidget {
@@ -16,7 +16,7 @@ class SalesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Sales'),
       ),
-      drawer: AppDrawer(),
+      // drawer: AppDrawer(),
       body: saleData.sales.length == 0
           ? LayoutBuilder(
               builder: (ctx, constrains) {

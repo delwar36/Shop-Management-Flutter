@@ -66,16 +66,14 @@ class _PurchaseItemState extends State<PurchaseItem> {
         actionPane: SlidableScrollActionPane(),
         child: ListTile(
           leading: CircleAvatar(
-            radius: 30,
+            radius: 28,
             backgroundColor: Colors.transparent,
             backgroundImage: NetworkImage(
                 widget.productItem.imageUrl,
-
               ),
             // FittedBox(
             //     child: Text(
             //         '${widget.productItem.amount} ${widget.productItem.unit}')),
-            
           ),
           title: Text(
             widget.productItem.title,

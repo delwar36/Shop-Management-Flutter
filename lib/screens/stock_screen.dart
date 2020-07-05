@@ -3,7 +3,6 @@ import '../widgets/stock_item.dart';
 import 'package:provider/provider.dart';
 
 import '../screens/cart_screen.dart';
-import '../widgets/app_drawer.dart';
 import '../providers/cart_provider.dart';
 import '../widgets/badge.dart';
 import '../providers/products_provider.dart';
@@ -41,7 +40,7 @@ class StockScreen extends StatelessWidget {
           )
         ],
       ),
-      drawer: AppDrawer(),
+      // drawer: AppDrawer(),
       body: RefreshIndicator(
         onRefresh: () => _refreshList(context),
         child: AllProductList(),

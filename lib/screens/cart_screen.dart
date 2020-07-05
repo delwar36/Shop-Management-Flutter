@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../main.dart';
 import '../providers/products_provider.dart';
 import 'package:provider/provider.dart';
 import '../providers/sales_provider.dart';
 import '../providers/cart_provider.dart';
 import '../widgets/cart_item.dart' as ci;
 import 'all_product_screen.dart';
+import 'my_home_page.dart';
 
 class CartScreen extends StatefulWidget {
   static const routeName = '/cart';

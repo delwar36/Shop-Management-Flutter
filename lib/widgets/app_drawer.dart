@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import '../main.dart';
+import '../screens/my_home_page.dart';
 import '../screens/sales_screen.dart';
 import '../screens/stock_screen.dart';
 
+// ignore: must_be_immutable
 class AppDrawer extends StatelessWidget {
+  Function onSignOut;
+  AppDrawer(
+    this.onSignOut,
+  );
+
   Widget buildTile(
       String title, IconData iconData, String route, BuildContext context) {
     return ListTile(
@@ -19,7 +25,12 @@ class AppDrawer extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.of(context).pushReplacementNamed(route);
+        if (route != null) {
+          
+          Navigator.of(context).pushNamed(route);
+        } else {
+          onSignOut();
+        }
       },
     );
   }
@@ -49,8 +60,11 @@ class AppDrawer extends StatelessWidget {
             height: 10,
           ),
           buildTile('Home', Icons.home, MyHomePage.routeName, context),
-          buildTile('Sales History', Icons.history, SalesScreen.routeName, context),
-          buildTile('Stock Product', Icons.store, StockScreen.routeName, context),
+          buildTile(
+              'Sales History', Icons.history, SalesScreen.routeName, context),
+          buildTile(
+              'Stock Product', Icons.store, StockScreen.routeName, context),
+          buildTile('Logout', Icons.arrow_left, null, context)
         ],
       ),
     );
