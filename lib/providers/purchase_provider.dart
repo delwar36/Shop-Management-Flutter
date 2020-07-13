@@ -16,31 +16,19 @@ class PurchaseProvider with ChangeNotifier {
     return [..._items];
   }
 
-  List<Product> getByCategory(String categoryId) {
-    return _items.where((product) {
-      return product.categories.contains(categoryId);
-    }).toList();
-  }
+  // List<Product> getByCategory(String categoryId) {
+  //   return _items.where((product) {
+  //     return product.categories.contains(categoryId);
+  //   }).toList();
+  // }
 
-  Product getById(String id) {
-    return _items.firstWhere((prod) => prod.id == id);
-  }
+  // Product getById(String id) {
+  //   return _items.firstWhere((prod) => prod.id == id);
+  // }
 
-  Future<void> decreaseById(String id, double amount) async {
-    Product product = _items.firstWhere((prod) => prod.id == id);
-    final url =
-        'https://shop-management-721b3.firebaseio.com/products/$id.json';
-    await http.patch(url,
-        body: json.encode({
-          'amount': product.amount - amount,
-        }));
-    product.amount -= amount;
-    notifyListeners();
-  }
-
-  Future<void> fetchAllProduct() async {
+  Future<void> fetchAllPurchase() async {
     _items.clear();
-    const url = 'https://shop-management-721b3.firebaseio.com/products.json';
+    const url = 'https://shop-management-721b3.firebaseio.com/purchase.json';
     try {
       final response = await http.get(url);
       // print(response.body);
@@ -89,7 +77,7 @@ class PurchaseProvider with ChangeNotifier {
     }
   }
 
-  Future<void> addProduct(Product product) async {
+  Future<void> addPurchase(Product product) async {
     Map<String, dynamic> remmoteProduct = {
       'title': product.title,
       'categories': product.categories,
@@ -101,7 +89,7 @@ class PurchaseProvider with ChangeNotifier {
       'dateTime': product.dateTime.toIso8601String(),
     };
 
-    const url = 'https://shop-management-721b3.firebaseio.com/products.json';
+    const url = 'https://shop-management-721b3.firebaseio.com/purchase.json';
 
     try {
       final response = await http.post(
@@ -140,9 +128,9 @@ class PurchaseProvider with ChangeNotifier {
     }
   }
 
-  Future<void> deleteProduct(String productId) async {
+  Future<void> deletePurchase(String productId) async {
     final url =
-        'https://shop-management-721b3.firebaseio.com/products/$productId.json';
+        'https://shop-management-721b3.firebaseio.com/purchase/$productId.json';
     try {
       await http.delete(url);
       _items.remove(_items.firstWhere((prod) => prod.id == productId));

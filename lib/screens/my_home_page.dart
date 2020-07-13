@@ -3,6 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_mangement/login/auth.dart';
+import 'package:shop_mangement/providers/purchase_provider.dart';
 import 'package:shop_mangement/widgets/purchase_chart.dart';
 import '../models/category.dart';
 import '../providers/category_provider.dart';
@@ -74,6 +75,8 @@ class _MyHomePageState extends State<MyHomePage> {
             .fetchAllSales();
         await Provider.of<ProductsProvider>(context, listen: false)
             .fetchAllProduct();
+        await Provider.of<PurchaseProvider>(context, listen: false)
+            .fetchAllPurchase();
         await Provider.of<CategoryProvider>(context, listen: false)
             .fetchAllCategory();
       } catch (error) {

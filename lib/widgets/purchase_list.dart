@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../providers/products_provider.dart';
+import '../providers/purchase_provider.dart';
 import '../widgets/purchase_item.dart';
 import 'package:provider/provider.dart';
 
 class PurchaseList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final purchaseData = Provider.of<ProductsProvider>(context);
+    final purchaseData = Provider.of<PurchaseProvider>(context);
     return purchaseData.items.isEmpty
         ? LayoutBuilder(
             builder: (ctx, constrains) {
