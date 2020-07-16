@@ -54,7 +54,7 @@ class _ImageInputState extends State<ImageInput> {
                   width: double.infinity,
                 )
               : Text(
-                  'No Iamge Taken',
+                  'কোনো ছবি দেওয়া হয়নি',
                   textAlign: TextAlign.center,
                 ),
           alignment: Alignment.center,
@@ -65,7 +65,7 @@ class _ImageInputState extends State<ImageInput> {
         Expanded(
           child: FlatButton.icon(
             icon: Icon(Icons.camera),
-            label: Text('Take Picture'),
+            label: Text('ছবি তুলুন'),
             onPressed: _takePicture,
           ),
         ),

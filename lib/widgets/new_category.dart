@@ -63,7 +63,7 @@ class _NewCategoryState extends State<NewCategory> {
               height: 20,
             ),
             TextField(
-              decoration: InputDecoration(labelText: 'Product Name'),
+              decoration: InputDecoration(labelText: 'পণ্যের নাম'),
               controller: _titleController,
             ),
             SizedBox(
@@ -71,7 +71,7 @@ class _NewCategoryState extends State<NewCategory> {
             ),
             RaisedButton(
               color: Theme.of(context).primaryColor,
-              child: Text('Add Category'),
+              child: Text('ক্যাটাগরি যোগ করুন'),
               textColor: Theme.of(context).textTheme.button.color,
               onPressed: _submitData,
             ),

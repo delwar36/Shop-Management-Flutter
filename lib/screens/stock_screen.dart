@@ -19,7 +19,7 @@ class StockScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stock Products'),
+        title: Text('স্টক পণ্য'),
         actions: <Widget>[
           Consumer<CartProvider>(
             builder: (_, cart, ch) => cart.itemCount > 0
@@ -65,11 +65,11 @@ class AllProductList extends StatelessWidget {
             return GestureDetector(
               onLongPress: () {
                 Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text('Delete the product?'),
+                  content: Text('পণ্যটি মুছে ফেলুন?'),
                   duration: Duration(seconds: 2),
                   action: SnackBarAction(
                     textColor: Colors.red,
-                    label: 'Delete',
+                    label: 'মুছুন',
                     onPressed: () {
                       product.deleteProduct(categoryProduct[index].id);
                     },

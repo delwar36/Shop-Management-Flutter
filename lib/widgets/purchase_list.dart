@@ -14,7 +14,7 @@ class PurchaseList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
-                    'No transaction added yet',
+                    'এখনো কিছু কেনা হয়নি',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.title,
                   ),

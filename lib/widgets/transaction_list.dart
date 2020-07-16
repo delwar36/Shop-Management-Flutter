@@ -14,7 +14,7 @@ class TransactionList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   Text(
-                    'No transaction added yet',
+                    'এখনো কোনো বিক্রয় হয়নি',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.title,
                   ),

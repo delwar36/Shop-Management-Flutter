@@ -48,7 +48,7 @@ class AppDrawer extends StatelessWidget {
             alignment: Alignment.topLeft,
             color: Theme.of(context).primaryColor,
             child: Text(
-              'Shop Management',
+              'আমার দোকান',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
@@ -59,12 +59,12 @@ class AppDrawer extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          buildTile('Home', Icons.home, MyHomePage.routeName, context),
+          buildTile('হোম', Icons.home, MyHomePage.routeName, context),
           buildTile(
-              'Sales History', Icons.history, SalesScreen.routeName, context),
+              'বিক্রয় ইতিহাস', Icons.history, SalesScreen.routeName, context),
           buildTile(
-              'Stock Product', Icons.store, StockScreen.routeName, context),
-          buildTile('Logout', Icons.arrow_left, null, context)
+              'স্টক পণ্য', Icons.store, StockScreen.routeName, context),
+          buildTile('লগআউট', Icons.arrow_left, null, context)
         ],
       ),
     );

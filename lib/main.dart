@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'providers/purchase_provider.dart';
 import 'login/auth.dart';
 import 'login/pages/splash_screen.dart';
 import 'providers/category_provider.dart';
@@ -43,10 +44,13 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider.value(
           value: CategoryProvider(),
         ),
+        ChangeNotifierProvider.value(
+          value: PurchaseProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Shop Management',
+        title: 'আমার দোকান',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           accentColor: Colors.blue,

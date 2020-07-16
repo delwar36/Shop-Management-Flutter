@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 3));
-    logoanimation = Tween(begin: 25.0, end: 100.0).animate(
+    logoanimation = Tween(begin: 2.0, end: 100.0).animate(
         CurvedAnimation(parent: animationController, curve: Curves.bounceOut));
     textanimation = Tween(begin: 0.0, end: 20.0).animate(CurvedAnimation(
         parent: animationController, curve: Curves.bounceInOut));
@@ -76,7 +76,7 @@ class _SplashScreenState extends State<SplashScreen>
                     ),
                     Padding(padding: EdgeInsets.only(top: 20.0)),
                     Text(
-                      "              Loading....\n Thanks for your paitence",
+                      "              লোড হচ্ছে....\n ধৈর্য ধরে থাকার জন্য ধন্যবাদ",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

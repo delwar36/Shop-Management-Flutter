@@ -29,7 +29,7 @@ class SalesScreen extends StatelessWidget {
                           height: 20,
                         ),
                         Text(
-                          'No sales completed yet',
+                          'এখনো কিছু বিক্রি হয়নি',
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.title,
                         ),
@@ -48,12 +48,12 @@ class SalesScreen extends StatelessWidget {
                       height: 20,
                     ),
                     RaisedButton(
-                      child: Text('Sell some now'),
+                      child: Text('কিছু বিক্রি করুন'),
                       onPressed: () {
                         Navigator.of(context).pushNamed(
                           AllProductScreen.routeName,
                           arguments: {
-                            'title': 'All Products',
+                            'title': 'সকল পণ্য',
                           },
                         );
                       },

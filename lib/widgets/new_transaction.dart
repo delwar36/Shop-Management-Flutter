@@ -99,11 +99,11 @@ class _NewtransactionState extends State<Newtransaction> {
           height: 20,
         ),
         TextFormField(
-          decoration: InputDecoration(labelText: 'Product Name'),
+          decoration: InputDecoration(labelText: 'পণ্যের নাম'),
           controller: _titleController,
           validator: (arg) {
             if (arg.length == 0) {
-              return 'This field is required';
+              return 'এই ঘর প্রয়োজনীয়';
             } else {
               return null;
             }
@@ -113,7 +113,7 @@ class _NewtransactionState extends State<Newtransaction> {
           height: 20,
         ),
         TextFormField(
-          decoration: InputDecoration(labelText: 'Amount'),
+          decoration: InputDecoration(labelText: 'পরিমাণ'),
           controller: _amountController,
           keyboardType: TextInputType.numberWithOptions(decimal: true),
         ),
@@ -128,7 +128,7 @@ class _NewtransactionState extends State<Newtransaction> {
           height: 20,
         ),
         TextFormField(
-          decoration: InputDecoration(labelText: 'Purchase price(per unit)'),
+          decoration: InputDecoration(labelText: 'ক্রয়মূল্য(প্রতি একক)'),
           controller: _pPriceController,
           keyboardType: TextInputType.numberWithOptions(decimal: true),
         ),
@@ -136,7 +136,7 @@ class _NewtransactionState extends State<Newtransaction> {
           height: 20,
         ),
         TextFormField(
-          decoration: InputDecoration(labelText: 'Sell price (per unit'),
+          decoration: InputDecoration(labelText: 'বিক্রয়মূল্য(প্রতি একক)'),
           controller: _sPriceController,
           keyboardType: TextInputType.numberWithOptions(decimal: true),
         ),
@@ -145,7 +145,7 @@ class _NewtransactionState extends State<Newtransaction> {
         ),
         RaisedButton(
           color: Theme.of(context).primaryColor,
-          child: Text('Add Transaction'),
+          child: Text('কিনুন'),
           textColor: Theme.of(context).textTheme.button.color,
           onPressed: _submitData,
         ),

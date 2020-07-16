@@ -42,24 +42,24 @@ class _TransactionItemState extends State<TransactionItem> {
       child: Slidable(
         actions: <Widget>[
           IconSlideAction(
-            caption: 'Archive',
+            caption: 'আর্কাইভ',
             color: Colors.blue,
             icon: Icons.archive,
           ),
           IconSlideAction(
-            caption: 'Share',
+            caption: 'শেয়ার',
             color: Colors.indigo,
             icon: Icons.share,
           ),
         ],
         secondaryActions: <Widget>[
           IconSlideAction(
-            caption: 'More',
+            caption: 'আরো',
             color: Colors.black45,
             icon: Icons.more_horiz,
           ),
           IconSlideAction(
-            caption: 'Delete',
+            caption: 'মুছুন',
             color: Colors.red,
             icon: Icons.delete,
             onTap: () => () {},

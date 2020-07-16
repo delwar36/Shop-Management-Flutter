@@ -3,8 +3,8 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_mangement/login/auth.dart';
-import 'package:shop_mangement/providers/purchase_provider.dart';
-import 'package:shop_mangement/widgets/purchase_chart.dart';
+import '../providers/purchase_provider.dart';
+import '../widgets/purchase_chart.dart';
 import '../models/category.dart';
 import '../providers/category_provider.dart';
 import '../widgets/new_category.dart';
@@ -83,11 +83,11 @@ class _MyHomePageState extends State<MyHomePage> {
         showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
-            title: Text('An error occured!'),
-            content: Text('Something went wrong'),
+            title: Text('সমস্যা!'),
+            content: Text('কোনো সমস্যা হয়েছে'),
             actions: <Widget>[
               FlatButton(
-                child: Text('Okay'),
+                child: Text('আচ্ছা'),
                 onPressed: () {
                   Navigator.of(ctx).pop();
                 },
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
         if (user != null)
           _email = user.email.toString();
         else
-          _email = "Loading...";
+          _email = "লোড হচ্ছে...";
       });
     });
     super.initState();
@@ -138,6 +138,8 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       await Provider.of<ProductsProvider>(context, listen: false)
           .addProduct(product);
+      await Provider.of<PurchaseProvider>(context, listen: false)
+          .addPurchase(product);
     } catch (error) {
       await showErrorDialog();
     } finally {
@@ -177,11 +179,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('An error occured!'),
-        content: Text('Something went wrong'),
+        title: Text('সমস্যা!'),
+        content: Text('কোনো সমস্যা হয়েছে'),
         actions: <Widget>[
           FlatButton(
-            child: Text('Okay'),
+            child: Text('আচ্ছা'),
             onPressed: () {
               Navigator.of(ctx).pop();
             },
@@ -251,13 +253,13 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(ctx).pushNamed(
       AllProductScreen.routeName,
       arguments: {
-        'title': 'All Products',
+        'title': 'সকল পণ্য',
       },
     );
   }
 
   int _selectPageIndex = 0;
-  String pageTitle = 'Category';
+  String pageTitle = 'ক্যাটাগরি';
   void _selectPage(int index, String title) {
     setState(() {
       _selectPageIndex = index;
@@ -272,7 +274,7 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           Text(
-            'Show Chart',
+            'চার্ট দেখুন',
             style: Theme.of(context).textTheme.title,
           ),
           Switch.adaptive(
@@ -391,7 +393,7 @@ class _MyHomePageState extends State<MyHomePage> {
     List<Map<String, Object>> _pages = [
       {
         'page': Categories(),
-        'title': 'Category',
+        'title': 'ক্যাটাগরি',
       },
       {
         'page': Column(
@@ -407,7 +409,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ..._buildPortraitContent(appBar, txListWidget, Chart()),
           ],
         ),
-        'title': 'Sales Log',
+        'title': 'বিক্রয় লগ',
       },
       {
         'page': RefreshIndicator(
@@ -427,7 +429,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-        'title': 'Purchase Log',
+        'title': 'ক্রয় লগ',
       },
     ];
 

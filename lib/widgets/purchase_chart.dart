@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_mangement/models/product.dart';
-import 'package:shop_mangement/providers/products_provider.dart';
+import '../models/product.dart';
+import '../providers/purchase_provider.dart';
 import '../widgets/chart_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -38,7 +38,7 @@ class PurchaseChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final products = Provider.of<ProductsProvider>(context).items;
+    final products = Provider.of<PurchaseProvider>(context).items;
     print(groupedTransactionValues);
     return Card(
       elevation: 6,

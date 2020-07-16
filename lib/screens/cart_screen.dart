@@ -55,28 +55,28 @@ class _CartScreenState extends State<CartScreen> {
                   FlatButton(
                     child: _isLoading
                         ? CircularProgressIndicator()
-                        : Text('Sell Now'),
+                        : Text('বিক্রি করুন'),
                     onPressed: (cart.items.length <= 0 || _isLoading)
                         ? null
                         : () {
                             showDialog(
                               context: context,
                               builder: (ctx) => AlertDialog(
-                                title: Text('What is you customer name?'),
+                                title: Text('ক্রেতার নাম কি?'),
                                 content: TextField(
                                   decoration: InputDecoration(
-                                      labelText: 'Customer Name (Optional)'),
+                                      labelText: 'নাম (ঐচ্ছিক)'),
                                   controller: cusNameController,
                                 ),
                                 actions: <Widget>[
                                   FlatButton(
-                                    child: Text('Cancel'),
+                                    child: Text('বাতিল'),
                                     onPressed: () {
                                       Navigator.of(context).pop(false);
                                     },
                                   ),
                                   FlatButton(
-                                    child: Text('Submit'),
+                                    child: Text('ঠিক আছে'),
                                     onPressed: () async {
                                       setState(() {
                                         _isLoading = true;
@@ -112,12 +112,12 @@ class _CartScreenState extends State<CartScreen> {
                                         showDialog(
                                           context: context,
                                           builder: (ctx) => AlertDialog(
-                                            title: Text('An error occured!'),
+                                            title: Text('সমস্যা!'),
                                             content:
-                                                Text('Something went wrong'),
+                                                Text('কোনো সমস্যা হয়েছে'),
                                             actions: <Widget>[
                                               FlatButton(
-                                                child: Text('Okay'),
+                                                child: Text('আচ্ছা'),
                                                 onPressed: () {
                                                   Navigator.of(ctx).pop();
                                                 },
@@ -155,7 +155,7 @@ class _CartScreenState extends State<CartScreen> {
                                   height: 20,
                                 ),
                                 Text(
-                                  'Shopping bag is empty!',
+                                  'বাজারের ব্যাগ খালি!',
                                   textAlign: TextAlign.center,
                                   style: Theme.of(context).textTheme.title,
                                 ),
@@ -174,12 +174,12 @@ class _CartScreenState extends State<CartScreen> {
                               height: 20,
                             ),
                             RaisedButton(
-                              child: Text('Add some'),
+                              child: Text('কিছু যগ করুন'),
                               onPressed: () {
                                 Navigator.of(ctx).pushNamed(
                                   AllProductScreen.routeName,
                                   arguments: {
-                                    'title': 'All Products',
+                                    'title': 'সকল পণ্য',
                                   },
                                 );
                               },

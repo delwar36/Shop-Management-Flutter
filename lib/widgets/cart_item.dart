@@ -107,7 +107,7 @@ class CartItem extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Total: \u09f3${(price * quantity).toStringAsFixed(2)}',
+                      'মোট: \u09f3${(price * quantity).toStringAsFixed(2)}',
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 14,
@@ -133,7 +133,7 @@ class CartItem extends StatelessWidget {
                         showDialog(
                           context: context,
                           builder: (ctx) => AlertDialog(
-                            title: Text('Give the amount of product?'),
+                            title: Text('পণ্যের পরিমান দিন?'),
                             content: TextField(
                               autofocus: true,
                               keyboardType: TextInputType.numberWithOptions(
@@ -142,13 +142,13 @@ class CartItem extends StatelessWidget {
                             ),
                             actions: <Widget>[
                               FlatButton(
-                                child: Text('Cancel'),
+                                child: Text('বাতিল'),
                                 onPressed: () {
                                   Navigator.of(context).pop(false);
                                 },
                               ),
                               FlatButton(
-                                child: Text('Submit'),
+                                child: Text('সাবমিট'),
                                 onPressed: () {
                                   final enteredQnty =
                                       double.parse(qntController.text);
@@ -159,7 +159,7 @@ class CartItem extends StatelessWidget {
                                     Scaffold.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                            'This product has been out of stock'),
+                                            'এই পণ্যটি শেষ হয়ে গেছে'),
                                         duration: Duration(seconds: 2),
                                       ),
                                     );
@@ -191,7 +191,7 @@ class CartItem extends StatelessWidget {
                           Scaffold.of(context).hideCurrentSnackBar();
                           Scaffold.of(context).showSnackBar(
                             SnackBar(
-                              content: Text('This product has been out of stock'),
+                              content: Text('এই পণ্যটি শেষ হয়ে গেছে'),
                               duration: Duration(seconds: 2),
                             ),
                           );

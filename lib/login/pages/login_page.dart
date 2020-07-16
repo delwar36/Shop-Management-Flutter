@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
       // },
       // );
     } catch (e) {
-      final snackBar = SnackBar(content: Text("Error in Signing in!"));
+      final snackBar = SnackBar(content: Text("সাইন ইন করতে সমস্যা হচ্ছে!"));
       scaffoldKey.currentState.showSnackBar(snackBar);
       print("Error: $e");
     }
@@ -87,7 +87,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
       try {
         await widget.auth.resetPassword(_emailpassword);
         Navigator.of(context).pop();
-        final snackBar = SnackBar(content: Text("Password Reset Email Sent"));
+        final snackBar =
+            SnackBar(content: Text("পাসওয়ার্ড রিসেট কোড পাঠানো হয়েছে"));
         scaffoldKey.currentState.showSnackBar(snackBar);
       } catch (e) {}
     }
@@ -97,6 +98,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: Colors.white,
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -126,8 +128,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       TextFormField(
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                          hintText: "Enter Email",
-                          labelText: "Email",
+                          hintText: "ইমেইল দিন",
+                          labelText: "ইমেইল",
                           labelStyle: TextStyle(color: Colors.grey),
                           hintStyle:
                               TextStyle(color: Colors.grey.withOpacity(.45)),
@@ -140,7 +142,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                         ),
                         style: TextStyle(color: Colors.blue),
                         validator: (val) =>
-                            !val.contains('@') ? "Invalid Email" : null,
+                            !val.contains('@') ? "অকার্যকর ইমেইল" : null,
                         onSaved: (val) => _email = val,
                         onFieldSubmitted: (val) =>
                             FocusScope.of(context).requestFocus(focusNode),
@@ -148,8 +150,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       Padding(padding: EdgeInsets.only(top: 30.0)),
                       TextFormField(
                         decoration: InputDecoration(
-                          hintText: "Enter Password",
-                          labelText: "Password",
+                          hintText: "পাসওয়ার্ড দিন",
+                          labelText: "পাসওয়ার্ড",
                           labelStyle: TextStyle(color: Colors.grey),
                           hintStyle:
                               TextStyle(color: Colors.grey.withOpacity(.45)),
@@ -163,14 +165,14 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                         obscureText: true,
                         style: TextStyle(color: Colors.blue),
                         validator: (val) =>
-                            val.length < 6 ? "Password too short" : null,
+                            val.length < 6 ? "পাসওয়ার্ড খুব ছোট" : null,
                         onSaved: (val) => _password = val,
                         focusNode: focusNode,
                       ),
                     ],
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(top: 60.0)),
+                Padding(padding: EdgeInsets.only(top: 40.0)),
                 Container(
                   height: 45.0,
                   width: 200.0,
@@ -178,9 +180,10 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       color: Colors.blue[400].withOpacity(.6),
                       borderRadius: BorderRadius.circular(30.0)),
                   child: FlatButton(
+                    color: Colors.blue,
                     onPressed: _submit,
                     child: Text(
-                      "LOGIN",
+                      "লগইন",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20.0,
@@ -193,7 +196,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                     splashColor: Colors.blue[800],
                   ),
                 ),
-                Padding(padding: EdgeInsets.only(top: 20.0)),
+                Padding(padding: EdgeInsets.only(top: 15.0)),
                 FlatButton(
                     onPressed: () {
                       showDialog(
@@ -202,19 +205,19 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                             return AlertDialog(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0)),
-                              title: Text("Reset Password"),
+                              title: Text("পাসওয়ার্ড রিসেট করুন"),
                               content: Form(
                                 key: formKey1,
                                 child: TextFormField(
                                   onSaved: (val) => _emailpassword = val,
                                   validator: (val) => !val.contains('@')
-                                      ? "Invalid Email"
+                                      ? "অকার্যকর ইমেইল"
                                       : null,
                                   keyboardType: TextInputType.emailAddress,
                                   style: TextStyle(color: Colors.blue),
                                   decoration: InputDecoration(
-                                    hintText: "Enter Email",
-                                    labelText: "Email",
+                                    hintText: "ইমেইল দিন",
+                                    labelText: "ইমেইল",
                                     border: OutlineInputBorder(
                                         borderRadius:
                                             BorderRadius.circular(8.0)),
@@ -227,7 +230,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                     onPressed: () =>
                                         Navigator.of(context).pop(),
                                     child: Text(
-                                      "Cancel",
+                                      "বাতিল",
                                       style: TextStyle(color: Colors.black),
                                     )),
                                 RaisedButton(
@@ -235,7 +238,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                     _passwordReset();
                                   },
                                   child: Text(
-                                    "Submit",
+                                    "সাবমিট",
                                     style: TextStyle(color: Colors.black),
                                   ),
                                   color: Colors.deepOrange,
@@ -245,13 +248,12 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                           });
                     },
                     child: Text(
-                      "Forgot Password?",
+                      "পাসওয়ার্ড ভুলে গেছেন?",
                       style: TextStyle(
                           color: Colors.redAccent,
                           fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic,
                           fontFamily: "Karla",
-                          fontSize: 20.0),
+                          fontSize: 16.0),
                     ))
               ],
             ),
