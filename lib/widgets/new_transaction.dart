@@ -94,7 +94,7 @@ class _NewtransactionState extends State<Newtransaction> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
-        ImageInput(_selectImage),
+        ImageInput(_selectImage, context),
         SizedBox(
           height: 20,
         ),

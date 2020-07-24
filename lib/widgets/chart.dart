@@ -6,8 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
 class Chart extends StatelessWidget {
-
-
   List<Map<String, Object>> groupedTransactionValues(List<Sale> sales) {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(
@@ -22,7 +20,6 @@ class Chart extends StatelessWidget {
           totalSum += sales[i].amount;
         }
       }
-
 
       return {
         'day': DateFormat.E().format(weekDay).substring(0, 3),
@@ -43,27 +40,31 @@ class Chart extends StatelessWidget {
     print(groupedTransactionValues);
     return Card(
       elevation: 6,
-      margin: EdgeInsets.all(20),
+      margin: EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: 5,
+      ),
       child: Container(
+        height: 160,
         padding: EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupedTransactionValues(sales).map((data) {
-            if(data['day']=='Mon'){
-              data['day'] ='সোম';
-            } else if(data['day']=='Tue'){
-              data['day'] ='মঙ্গল';
-            } else if(data['day']=='Wed'){
-              data['day'] ='বুধ';
-            } else if(data['day']=='Thu'){
-              data['day'] ='বৃহঃ';
-            } else if(data['day']=='Fri'){
-              data['day'] ='শুক্র';
-            } else if(data['day']=='Sat'){
-              data['day'] ='শনি';
-            } else{
-              data['day'] ='রবি';
-            } 
+            if (data['day'] == 'Mon') {
+              data['day'] = 'সোম';
+            } else if (data['day'] == 'Tue') {
+              data['day'] = 'মঙ্গল';
+            } else if (data['day'] == 'Wed') {
+              data['day'] = 'বুধ';
+            } else if (data['day'] == 'Thu') {
+              data['day'] = 'বৃহঃ';
+            } else if (data['day'] == 'Fri') {
+              data['day'] = 'শুক্র';
+            } else if (data['day'] == 'Sat') {
+              data['day'] = 'শনি';
+            } else {
+              data['day'] = 'রবি';
+            }
             return Flexible(
               fit: FlexFit.tight,
               child: ChartBar(

@@ -3,6 +3,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_mangement/login/auth.dart';
+import 'package:shop_mangement/widgets/summary_widget.dart';
 import '../providers/purchase_provider.dart';
 import '../widgets/purchase_chart.dart';
 import '../models/category.dart';
@@ -18,7 +19,6 @@ import 'package:provider/provider.dart';
 import 'all_product_screen.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/badge.dart';
-import '../widgets/categories.dart';
 import '../widgets/chart.dart';
 import '../widgets/new_transaction.dart';
 import '../widgets/transaction_list.dart';
@@ -259,7 +259,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   int _selectPageIndex = 0;
-  String pageTitle = 'ক্যাটাগরি';
+  String pageTitle = 'ক্রয়বিক্রয়';
   void _selectPage(int index, String title) {
     setState(() {
       _selectPageIndex = index;
@@ -314,9 +314,32 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
   }
 
-  Future<void> _refreshList(BuildContext context) async {
-    await Provider.of<ProductsProvider>(context, listen: false)
-        .fetchAllProduct();
+  Future<void> _fetchData() async {
+    try {
+      await Provider.of<SalesProvider>(context, listen: false).fetchAllSales();
+      await Provider.of<ProductsProvider>(context, listen: false)
+          .fetchAllProduct();
+      await Provider.of<PurchaseProvider>(context, listen: false)
+          .fetchAllPurchase();
+      await Provider.of<CategoryProvider>(context, listen: false)
+          .fetchAllCategory();
+    } catch (error) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('সমস্যা!'),
+          content: Text('কোনো সমস্যা হয়েছে'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('আচ্ছা'),
+              onPressed: () {
+                Navigator.of(ctx).pop();
+              },
+            )
+          ],
+        ),
+      );
+    }
   }
 
   @override
@@ -392,8 +415,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     List<Map<String, Object>> _pages = [
       {
-        'page': Categories(),
-        'title': 'ক্যাটাগরি',
+        'page': SummaryWidget(),
+        'title': 'ক্রয়বিক্রয়',
       },
       {
         'page': Column(
@@ -412,27 +435,22 @@ class _MyHomePageState extends State<MyHomePage> {
         'title': 'বিক্রয় লগ',
       },
       {
-        'page': RefreshIndicator(
-          onRefresh: () => _refreshList(context),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              if (isLandscap)
-                ..._buildLandscapeContent(
-                  appBar,
-                  pcsListWidget,
-                  PurchaseChart(),
-                ),
-              if (!isLandscap)
-                ..._buildPortraitContent(
-                    appBar, pcsListWidget, PurchaseChart()),
-            ],
-          ),
+        'page': Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            if (isLandscap)
+              ..._buildLandscapeContent(
+                appBar,
+                pcsListWidget,
+                PurchaseChart(),
+              ),
+            if (!isLandscap)
+              ..._buildPortraitContent(appBar, pcsListWidget, PurchaseChart()),
+          ],
         ),
         'title': 'ক্রয় লগ',
       },
     ];
-
     return Platform.isIOS
         ? CupertinoPageScaffold(
             child: _pages[_selectPageIndex]['page'],
@@ -447,7 +465,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: CircularProgressIndicator(),
                   )
                 : SafeArea(
-                    child: _pages[_selectPageIndex]['page'],
+                    child: RefreshIndicator(
+                      child: _pages[_selectPageIndex]['page'],
+                      onRefresh: () => _fetchData(),
+                    ),
                   ),
             bottomNavigationBar: CurvedNavigationBar(
               color: Theme.of(context).primaryColor,

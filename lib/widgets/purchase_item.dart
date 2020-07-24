@@ -35,7 +35,6 @@ class _PurchaseItemState extends State<PurchaseItem> {
       elevation: 6,
       margin: EdgeInsets.symmetric(
         vertical: 3,
-        horizontal: 5,
       ),
       child: Slidable(
         actions: <Widget>[

@@ -87,7 +87,7 @@ class AllProductList extends StatelessWidget {
           },
           itemCount: categoryProduct.length,
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 150,
+            maxCrossAxisExtent: 120,
             childAspectRatio: 3 / 4,
           ),
         );

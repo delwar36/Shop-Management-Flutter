@@ -6,19 +6,97 @@ import 'package:path_provider/path_provider.dart' as syspaths;
 
 class ImageInput extends StatefulWidget {
   final Function onSelectIamge;
-  ImageInput(this.onSelectIamge);
+  final BuildContext context;
+  ImageInput(this.onSelectIamge, this.context);
   @override
   _ImageInputState createState() => _ImageInputState();
 }
 
 class _ImageInputState extends State<ImageInput> {
   File _storedIamge;
-  
-  
 
-  Future<void> _takePicture() async {
+  Future<void> _pickerSoource() async {
+    showDialog(
+        context: context,
+        builder: (ctx) {
+          return Dialog(
+            child: Container(
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: InkWell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Colors.grey[300],
+                              width: 2,
+                            ),
+                            top: BorderSide(
+                              color: Colors.grey[300],
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        padding: EdgeInsets.all(15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(Icons.camera),
+                            Padding(
+                              padding: EdgeInsets.all(4),
+                            ),
+                            Text('Camera'),
+                          ],
+                        ),
+                      ),
+                      onTap: () {
+                        _takePicture(true);
+                        Navigator.of(ctx).pop();
+                      },
+                    ),
+                  ),
+                  Container(
+                    child: InkWell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Colors.grey[300],
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        padding: EdgeInsets.all(15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(Icons.image),
+                            Padding(
+                              padding: EdgeInsets.all(4),
+                            ),
+                            Text('Gallery'),
+                          ],
+                        ),
+                      ),
+                      onTap: () {
+                        _takePicture(false);
+                        Navigator.of(ctx).pop();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+  Future<void> _takePicture(bool isCamera) async {
     final imageFile = await ImagePicker.pickImage(
-      source: ImageSource.camera,
+      source: isCamera ? ImageSource.camera : ImageSource.gallery,
       maxHeight: 600,
     );
 
@@ -63,10 +141,13 @@ class _ImageInputState extends State<ImageInput> {
           width: 10,
         ),
         Expanded(
-          child: FlatButton.icon(
-            icon: Icon(Icons.camera),
-            label: Text('ছবি তুলুন'),
-            onPressed: _takePicture,
+          child: InkWell(
+            child: FlatButton.icon(
+              icon: Icon(Icons.camera),
+              label: Text('ছবি'),
+              textColor: Colors.blue,
+              onPressed: _pickerSoource,
+            ),
           ),
         ),
       ],

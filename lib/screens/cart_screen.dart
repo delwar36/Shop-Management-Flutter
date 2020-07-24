@@ -174,7 +174,7 @@ class _CartScreenState extends State<CartScreen> {
                               height: 20,
                             ),
                             RaisedButton(
-                              child: Text('কিছু যগ করুন'),
+                              child: Text('কিছু যোগ করুন'),
                               onPressed: () {
                                 Navigator.of(ctx).pushNamed(
                                   AllProductScreen.routeName,

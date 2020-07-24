@@ -26,7 +26,6 @@ class AppDrawer extends StatelessWidget {
       ),
       onTap: () {
         if (route != null) {
-          
           Navigator.of(context).pushNamed(route);
         } else {
           onSignOut();
@@ -39,33 +38,34 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       elevation: 10,
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 180,
-            width: double.infinity,
-            padding: EdgeInsets.only(left: 10, top: 40),
-            alignment: Alignment.topLeft,
-            color: Theme.of(context).primaryColor,
-            child: Text(
-              'আমার দোকান',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Colors.white,
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 180,
+              width: double.infinity,
+              padding: EdgeInsets.only(left: 10, top: 40),
+              alignment: Alignment.topLeft,
+              color: Theme.of(context).primaryColor,
+              child: Text(
+                'আমার দোকান',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          buildTile('হোম', Icons.home, MyHomePage.routeName, context),
-          buildTile(
-              'বিক্রয় ইতিহাস', Icons.history, SalesScreen.routeName, context),
-          buildTile(
-              'স্টক পণ্য', Icons.store, StockScreen.routeName, context),
-          buildTile('লগআউট', Icons.arrow_left, null, context)
-        ],
+            SizedBox(
+              height: 10,
+            ),
+            buildTile('হোম', Icons.home, MyHomePage.routeName, context),
+            buildTile(
+                'বিক্রয় ইতিহাস', Icons.history, SalesScreen.routeName, context),
+            buildTile('স্টক পণ্য', Icons.store, StockScreen.routeName, context),
+            buildTile('লগআউট', Icons.arrow_left, null, context)
+          ],
+        ),
       ),
     );
   }

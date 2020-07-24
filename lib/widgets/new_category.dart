@@ -58,7 +58,7 @@ class _NewCategoryState extends State<NewCategory> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
-            ImageInput(_selectImage),
+            ImageInput(_selectImage, context),
             SizedBox(
               height: 20,
             ),
